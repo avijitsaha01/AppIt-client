@@ -2,7 +2,7 @@
 
 AppIt is a responsive IT Service Seller web application.
 
-[Live Website] | [Live API Server]
+[Live Website](https://creative-agency-assignme-41578.web.app/)
 
 ## Feature
 
@@ -45,5 +45,5 @@ Note: Only admin user have ability to view admin dashboard.
 - Dotenv
 - nodemon
 
-[Back-end Repository](https://github.com/faisalcep/creative-agency-server)
+[Back-end Repository](https://github.com/Porgramming-Hero-web-course/complete-website-server-avijitsaha01)
 
