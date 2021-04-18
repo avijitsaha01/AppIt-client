@@ -1,6 +1,6 @@
-# Creative Agency
+# Creative Agency Assignment under Programming Hero 
 
-A responsive IT Service Seller web application.
+AppIt is a responsive IT Service Seller web application.
 
 [Live Website] | [Live API Server]
 
