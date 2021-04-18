@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
       </div>
       <p className='text-center m-0'>
-        &copy; copyright Orange labs {new Date().getFullYear()}
+        &copy; copyright Programming Hero under Assignment 11 {new Date().getFullYear()}
       </p>
     </footer>
   );
