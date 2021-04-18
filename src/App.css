@@ -1,38 +1,92 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@media (max-width: 576px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .serviceSection {
+    margin: 0 !important;
+  }
+  header.container {
+    left: 0 !important;
+  }
+  .headerMain::after {
+    display: none;
+  }
+  .heading h1 {
+    font-size: 28px !important;
+  }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .review.card {
+    width: 10rem !important;
+  }
+  .cardTop {
+    flex-direction: column;
+  }
+  img.card-img-top {
+    margin-bottom: 1rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 768px) {
+  header.container {
+    left: 0 !important;
   }
-  to {
-    transform: rotate(360deg);
+  .ml-auto.justify-content-center.align-items-center.navbar-nav {
+    background: white;
+    width: 10rem;
+    z-index: 1000;
+    position: relative;
+    right: -20px;
+    padding-bottom: 2rem;
+    padding-right: 1rem;
+    top: 1rem;
+  }
+  .headerMain::after {
+    display: none;
+  }
+  img.sliderImg {
+    width: 15rem !important;
+  }
+  .slick-slide {
+    width: 260px !important;
+  }
+  .cardTop p {
+    margin-top: 1rem !important;
+  }
+  .login.card {
+    width: 18rem !important;
+    height: 12rem !important;
+    margin: 3rem auto !important;
+  }
+  img.logoImg {
+    width: 11rem !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .headerMain::after {
+    display: none;
+  }
+
+  .heading h1 {
+    font-size: 32px !important;
+  }
+  img.sliderImg {
+    width: 15rem !important;
+  }
+  .slick-slide {
+    width: 260px !important;
+  }
+}
+@media (min-width: 992px) {
+  .headerMain {
+    clip-path: polygon(0 0, 100% 0, 100% 84%, 0% 100%);
   }
 }

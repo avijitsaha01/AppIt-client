@@ -1,0 +1,30 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  align-items: center;
+  min-height: 39rem;
+  background-color: #f8fafc;
+}
+.login.card {
+  margin: 4rem auto;
+  height: 20rem;
+}
+.loginForm h3 {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.loginForm button {
+  background-color: white;
+  border-radius: 30px;
+  color: black;
+  font-weight: 500;
+  font-size: 1rem;
+  border: 0.2px solid cyan;
+  margin-bottom: 0.5rem !important;
+}
+.loginForm button:hover {
+  background-color: #6930c3;
+  border: 0.2px solid #6930c3;
+}

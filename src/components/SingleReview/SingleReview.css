@@ -1,0 +1,22 @@
+img.personImg.rounded-circle {
+  width: 4rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.personDetails h5 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.personDetails span {
+  font-weight: 600;
+}
+.singlerReview {
+  max-width: 30% !important;
+  border: none !important;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.08);
+}
+@media (max-width: 768px) {
+  .singlerReview {
+    max-width: 90% !important;
+  }
+}

@@ -1,0 +1,12 @@
+.works {
+  background-color: #111430;
+  padding: 5rem 0;
+}
+
+img.sliderImg {
+  width: 22rem;
+}
+.sliderDiv {
+  width: 82%;
+  margin: 0 auto;
+}

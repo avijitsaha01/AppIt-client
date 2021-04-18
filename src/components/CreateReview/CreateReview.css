@@ -1,0 +1,24 @@
+button.submitContact {
+  background-color: #111430;
+  color: white !important;
+  padding: 10px 45px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  border: none;
+  outline: none;
+}
+button.submitContact:focus {
+  outline: none;
+}
+.reviewForm {
+  width: 50%;
+  overflow: hidden;
+}
+
+.reviewForm input {
+  height: 3rem;
+  border: none;
+}
+.reviewForm textarea {
+  border: none;
+}

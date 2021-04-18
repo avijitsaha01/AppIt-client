@@ -1,0 +1,126 @@
+.dashboard {
+  min-height: 38rem;
+}
+.Pane.vertical.Pane1 {
+  width: 15% !important;
+}
+.SplitPane.vertical {
+  overflow: visible !important;
+}
+.dashboardRight {
+  max-width: 100% !important;
+}
+.col-2.dashboardOptions {
+  display: flex;
+  flex-direction: column;
+  max-width: 100% !important;
+  color: black;
+}
+img.dashLogo {
+  width: 8rem;
+  margin: 2rem 0;
+}
+
+.dashboardOptions p:hover {
+  cursor: pointer;
+  color: #009444;
+}
+.dashboardOptions p:active {
+  opacity: 1;
+}
+.dashboardDetails {
+  background-color: #f4fbfd;
+  min-height: 32rem;
+}
+.singleInfo {
+  max-width: 23%;
+  display: flex;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 0 0.5rem;
+  color: rgba(255, 255, 255, 0.96);
+}
+.singleInfo h1 {
+  margin-right: 1rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.singleInfo p {
+  font-size: 14px;
+  margin: 0;
+}
+.pageNameandUser h6 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.pageNameandUser p {
+  font-weight: 600;
+}
+.dashboardLink a {
+  text-decoration: none;
+  color: black;
+  margin: 0.5rem 0;
+}
+.dashboardLink a:hover {
+  text-decoration: none;
+  color: #009444;
+}
+@media (max-width: 576px) {
+  .Pane.vertical.Pane1 {
+    width: 30% !important;
+  }
+  .componentList {
+    padding: 1rem !important;
+  }
+
+  .orderForm input,
+  .orderForm textarea {
+    font-size: 12px;
+  }
+  .fff.d-flex.justify-content-between.mb-3 {
+    flex-direction: column;
+  }
+  input#exampleInputPassword1 {
+    margin-top: 1rem;
+  }
+  .pageNameandUser h6 {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .Pane.vertical.Pane1 {
+    width: 22% !important;
+  }
+  .orderForm {
+    width: 100%;
+  }
+  .reviewForm {
+    width: 100% !important;
+  }
+  .serviceAddForm {
+    width: 100% !important;
+  }
+  .adminMakeForm {
+    width: 100% !important;
+  }
+  .addAdminBody {
+    flex-direction: column;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .Pane.vertical.Pane1 {
+    width: 22% !important;
+  }
+  .orderForm {
+    width: 100%;
+  }
+  .reviewForm {
+    width: 100% !important;
+  }
+  .serviceAddForm {
+    width: 100% !important;
+  }
+  .adminMakeForm {
+    width: 100% !important;
+  }
+}

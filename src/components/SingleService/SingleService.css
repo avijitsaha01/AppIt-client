@@ -1,0 +1,30 @@
+.service {
+  border-radius: 10px;
+  transition: all 0.6s ease;
+}
+.service:hover {
+  box-shadow: 0px 0px 50px rgb(228, 228, 228);
+  cursor: pointer;
+}
+.service img {
+  width: 4rem;
+  margin: 1rem 0;
+}
+.service p {
+  max-width: 14rem;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 0 1rem;
+  line-height: 28px;
+}
+@media (max-width: 576px) {
+}
+
+@media (max-width: 768px) {
+  .service {
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 992px) {
+}

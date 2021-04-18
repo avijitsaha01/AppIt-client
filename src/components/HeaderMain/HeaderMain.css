@@ -1,0 +1,30 @@
+.headerMain {
+  background-color: #09d22b;
+  padding-top: 10rem;
+}
+header.container {
+  z-index: 100;
+}
+.heading {
+  margin-bottom: 8rem;
+}
+.heading h1 {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 60px;
+}
+.heading p {
+  font-size: 16;
+  line-height: 24px;
+  color: black;
+  margin: 2rem 0;
+  margin-right: 2rem;
+}
+
+a.hire {
+  background-color: #111430;
+  color: white !important;
+  padding: 10px 45px;
+  border-radius: 6px;
+  text-decoration: none !important;
+}

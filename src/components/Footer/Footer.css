@@ -1,0 +1,40 @@
+a.submitContact {
+  background-color: #111430;
+  color: white !important;
+  padding: 10px 45px;
+  border-radius: 6px;
+  text-decoration: none !important;
+}
+.row.footer {
+  margin-bottom: 5rem;
+}
+.footerLeft {
+  padding: 0 6rem;
+}
+.footerLeft h2 {
+  color: #2d2d2d;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.footerLeft p {
+  font-size: 14px;
+  margin: 2rem 0;
+}
+
+.footerRight input {
+  height: 4rem;
+  border: none;
+}
+.footerRight textarea {
+  border: none;
+}
+@media (max-width: 576px) {
+  .footerLeft {
+    padding: 0;
+  }
+  footer {
+    padding: 2rem !important;
+  }
+}
