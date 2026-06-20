@@ -12,7 +12,7 @@ export default function PortfolioDetail() {
 
   const { data, isLoading } = useQuery({
     queryKey: ['portfolio', slug],
-    queryFn: () => api.get<{ portfolio: Portfolio }>(`/portfolios/published`).then(r => {
+    queryFn: () => api.get<{ portfolios: Portfolio[] }>('/portfolios/published').then(r => {
       const found = r.data.portfolios.find((p: Portfolio) => p.slug === slug)
       if (!found) throw new Error('Not found')
       return { portfolio: found }
