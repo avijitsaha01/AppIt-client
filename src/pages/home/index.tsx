@@ -424,6 +424,7 @@ function PartnerSection() {
     queryKey: ['partners'],
     queryFn: () => api.get<{ partners: Partner[] }>('/partners').then(r => r.data.partners),
   })
+  const [errored, setErrored] = useState<Set<string>>(new Set())
 
   if (!data?.length) return null
 
@@ -436,11 +437,16 @@ function PartnerSection() {
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
           {data.map((partner) => (
             <div key={partner._id} className="flex h-10 items-center justify-center grayscale transition-all duration-300 hover:grayscale-0">
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className="h-full object-contain opacity-40 transition-opacity hover:opacity-70"
-              />
+              {errored.has(partner._id) ? (
+                <span className="text-sm font-semibold text-neutral-300">{partner.name}</span>
+              ) : (
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-full object-contain opacity-40 transition-opacity hover:opacity-70"
+                  onError={() => setErrored(prev => new Set(prev).add(partner._id))}
+                />
+              )}
             </div>
           ))}
         </div>
@@ -529,8 +535,8 @@ function ContactSection() {
             <div className="space-y-4">
               {[
                 { label: 'Email', value: 'hello@appit.com' },
-                { label: 'Phone', value: '+1 (555) 123-4567' },
-                { label: 'Location', value: 'San Francisco, CA' },
+                { label: 'Phone', value: '+880 1234-567890' },
+                { label: 'Location', value: 'Dhaka, Bangladesh' },
               ].map((info) => (
                 <div key={info.label} className="flex items-center gap-3">
                   <div className="text-sm font-medium text-neutral-900 w-20">{info.label}</div>

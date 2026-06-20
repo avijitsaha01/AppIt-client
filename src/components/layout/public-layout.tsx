@@ -185,8 +185,8 @@ function FooterSection() {
             <h4 className="mb-5 text-sm font-semibold text-neutral-900">Contact</h4>
             <ul className="space-y-3 text-sm text-neutral-400">
               <li>hello@appit.com</li>
-              <li>+1 (555) 123-4567</li>
-              <li>San Francisco, CA</li>
+              <li>+880 1234-567890</li>
+              <li>Dhaka, Bangladesh</li>
             </ul>
           </div>
         </div>
