@@ -7,7 +7,7 @@ import { EmptyState } from '@/components/shared/empty-state'
 import { Button } from '@/components/ui/button'
 import type { Job } from '@/types'
 import { cn } from '@/lib/utils'
-import { MapPin, Clock, Send, X, Check } from 'lucide-react'
+import { MapPin, Clock, Send, X, Check, Upload } from 'lucide-react'
 
 const jobTypeConfig = {
   'full-time': { label: 'Full Time', color: 'bg-blue-100 text-blue-700' },
@@ -35,6 +35,8 @@ export default function Careers() {
     queryFn: () => api.get<{ jobs: Job[] }>('/jobs/open').then(r => r.data.jobs),
   })
 
+  const [applyError, setApplyError] = useState('')
+
   const mutation = useMutation({
     mutationFn: async () => {
       const fd = new FormData()
@@ -51,6 +53,10 @@ export default function Careers() {
       setShowForm(false)
       setFormData({ name: '', email: '', phone: '', coverLetter: '' })
       setResumeFile(null)
+      setApplyError('')
+    },
+    onError: (err: any) => {
+      setApplyError(err.response?.data?.error || err.response?.data?.details?.[0]?.message || 'Submission failed. Please try again.')
     },
   })
 
@@ -173,6 +179,11 @@ export default function Careers() {
               </button>
             </div>
             <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); mutation.mutate() }}>
+              {applyError && (
+                <div className="rounded-xl border border-red-100 bg-red-50 p-3 text-sm text-red-600">
+                  {applyError}
+                </div>
+              )}
               <input
                 placeholder="Full Name"
                 value={formData.name}
@@ -196,13 +207,29 @@ export default function Careers() {
                 required
               />
               <div>
-                <label className="text-sm font-medium text-neutral-700 mb-1 block">Resume</label>
-                <input
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={(e) => setResumeFile(e.target.files?.[0] || null)}
-                  className="w-full text-sm text-neutral-500 file:mr-3 file:rounded-lg file:border-0 file:bg-neutral-100 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-neutral-700 hover:file:bg-neutral-200"
-                />
+                <label className="mb-1.5 block text-sm font-medium text-neutral-700">Resume <span className="text-neutral-400">(PDF, DOC, DOCX)</span></label>
+                <div className="flex items-center gap-3">
+                  <label className="flex h-11 cursor-pointer items-center gap-2 rounded-xl border border-dashed border-neutral-300 bg-neutral-50 px-4 text-sm text-neutral-500 transition-colors hover:border-neutral-400 hover:bg-neutral-100">
+                    <input
+                      type="file"
+                      accept=".pdf,.doc,.docx"
+                      onChange={(e) => setResumeFile(e.target.files?.[0] || null)}
+                      className="hidden"
+                      required
+                    />
+                    <Upload className="h-4 w-4" />
+                    {resumeFile ? resumeFile.name : 'Choose file'}
+                  </label>
+                  {resumeFile && (
+                    <button
+                      type="button"
+                      onClick={() => setResumeFile(null)}
+                      className="text-sm text-red-500 hover:text-red-600"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
               </div>
               <textarea
                 rows={4}
