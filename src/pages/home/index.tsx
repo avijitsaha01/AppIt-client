@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import api from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/store/auth.store'
-import type { Service, Partner, Review, Portfolio } from '@/types'
+import type { Service, Partner, Review, Portfolio, Job } from '@/types'
 import {
   ArrowRight, Star, ChevronRight, Menu, X, Play, Check, Send,
   Code2, Palette, Cloud, Brain, Shield, Megaphone, Quote,
-  ExternalLink, MapPin, Phone, Mail,
+  ExternalLink, MapPin, Phone, Mail, Briefcase, Clock,
 } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
@@ -714,6 +714,87 @@ function ContactSection() {
   )
 }
 
+function CareerSection() {
+  const { data } = useQuery({
+    queryKey: ['jobs-home'],
+    queryFn: () => api.get<{ jobs: Job[] }>('/jobs/open').then(r => r.data.jobs),
+  })
+  const navigate = useNavigate()
+  const jobs = data?.slice(0, 4) ?? []
+
+  if (!jobs.length) return null
+
+  return (
+    <section className="relative overflow-hidden bg-neutral-50 py-28">
+      <div className="absolute -right-40 -top-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mb-16 flex flex-col items-center text-center">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-blue-600">
+            Careers
+          </div>
+          <h2 className="max-w-2xl text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
+            Join our
+            <br />
+            <span className="text-blue-500">growing team</span>
+          </h2>
+          <p className="mt-4 max-w-lg text-neutral-400">
+            We&apos;re always looking for talented people to help us build the future of digital services in Bangladesh.
+          </p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {jobs.map((job) => (
+            <div
+              key={job._id}
+              className="group cursor-pointer rounded-2xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-lg"
+              onClick={() => navigate('/careers')}
+            >
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                  <Briefcase className="h-5 w-5" />
+                </div>
+                <span className={cn(
+                  'shrink-0 rounded-full px-3 py-1 text-xs font-medium capitalize',
+                  job.type === 'full-time' && 'bg-emerald-50 text-emerald-600',
+                  job.type === 'part-time' && 'bg-amber-50 text-amber-600',
+                  job.type === 'contract' && 'bg-purple-50 text-purple-600',
+                  job.type === 'internship' && 'bg-blue-50 text-blue-600',
+                )}>
+                  {job.type}
+                </span>
+              </div>
+              <h3 className="mb-2 text-lg font-semibold text-neutral-900">{job.title}</h3>
+              <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-neutral-400">{job.description}</p>
+              <div className="flex items-center gap-4 text-xs text-neutral-400">
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5" />
+                  {job.location}
+                </span>
+                {job.deadline && (
+                  <span className="flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5" />
+                    {new Date(job.deadline).toLocaleDateString('en-BD', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Button
+            variant="outline"
+            className="group h-11 rounded-full border-neutral-300 px-7 text-sm transition-all hover:border-neutral-400 hover:shadow-lg"
+            onClick={() => navigate('/careers')}
+          >
+            View All Openings <ArrowRight className="ml-2 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function FooterSection() {
   return (
     <footer className="border-t border-neutral-100 bg-white py-16">
@@ -770,6 +851,7 @@ export default function Home() {
       <CTASection />
       <PartnerSection />
       <ReviewSection />
+      <CareerSection />
       <ContactSection />
       <FooterSection />
     </>
