@@ -95,7 +95,7 @@ export default function TicketDetail() {
         {ticket.status !== 'closed' && (
           <div className="border-t border-neutral-100 px-5 py-4">
             <form className="flex gap-3" onSubmit={(e) => { e.preventDefault(); replyMutation.mutate() }}>
-              <textarea id="type_your_reply" name="type_your_reply"                 rows={3}
+              <textarea id="type_your_reply" name="type_your_reply" rows={3}
                 placeholder="Type your reply..."
                 value={reply}
                 onChange={(e) => setReply(e.target.value)}

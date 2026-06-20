@@ -109,7 +109,7 @@ export default function Tickets() {
               </button>
             </div>
             <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); createMutation.mutate() }}>
-              <input id="subject" name="subject"                 placeholder="Subject"
+              <input id="subject" name="subject" placeholder="Subject"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 className="h-10 text-[13px]"
@@ -126,7 +126,7 @@ export default function Tickets() {
                   <option value="high">High Priority</option>
                 </select>
               </div>
-              <textarea id="describe_your_issue_in_detail" name="describe_your_issue_in_detail"                 rows={5}
+              <textarea id="describe_your_issue_in_detail" name="describe_your_issue_in_detail" rows={5}
                 placeholder="Describe your issue in detail..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}

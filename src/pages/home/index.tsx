@@ -686,17 +686,17 @@ function ContactSection() {
           <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg">
             <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
               <div className="grid gap-5 sm:grid-cols-2">
-                <input id="your_name" name="your_name"                   placeholder="Your Name"
+                <input id="name" name="name" placeholder="Your Name"
                   className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none transition-colors focus:border-blue-400 focus:ring-2 focus:ring-blue-50"
                 />
-                <input id="your_email" name="your_email"                   placeholder="Your Email"
+                <input id="email" name="email" placeholder="Your Email"
                   className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none transition-colors focus:border-blue-400 focus:ring-2 focus:ring-blue-50"
                 />
               </div>
-              <input id="subject" name="subject"                 placeholder="Subject"
+              <input id="subject" name="subject" placeholder="Subject"
                 className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none transition-colors focus:border-blue-400 focus:ring-2 focus:ring-blue-50"
               />
-              <textarea id="tell_us_about_your_project" name="tell_us_about_your_project"                 rows={5}
+              <textarea id="message" name="message" rows={5}
                 placeholder="Tell us about your project..."
                 className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm outline-none transition-colors focus:border-blue-400 focus:ring-2 focus:ring-blue-50"
               />

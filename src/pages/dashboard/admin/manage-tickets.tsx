@@ -62,7 +62,7 @@ export default function ManageTickets() {
 
       <div className="relative">
         <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
-        <input id="search_tickets" name="search_tickets"           placeholder="Search tickets..."
+        <input id="search_tickets" name="search_tickets" placeholder="Search tickets..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="h-8 w-56 pl-8 text-[13px]"
@@ -126,7 +126,7 @@ export default function ManageTickets() {
                       ))}
                     </div>
                     <form className="flex gap-3" onSubmit={(e) => { e.preventDefault(); replyMutation.mutate({ id: ticket._id, message: replyText }) }}>
-                      <textarea id="type_reply" name="type_reply"                         rows={2}
+                      <textarea id="type_reply" name="type_reply" rows={2}
                         placeholder="Type reply..."
                         value={replyText}
                         onChange={(e) => setReplyText(e.target.value)}
