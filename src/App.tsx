@@ -34,6 +34,7 @@ import ManageJobs from '@/pages/dashboard/admin/manage-jobs'
 import ManageApplications from '@/pages/dashboard/admin/manage-applications'
 import ManageLeads from '@/pages/dashboard/admin/manage-leads'
 import ManageTickets from '@/pages/dashboard/admin/manage-tickets'
+import NotFound from '@/pages/not-found'
 
 const queryClient = new QueryClient()
 
@@ -161,6 +162,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
