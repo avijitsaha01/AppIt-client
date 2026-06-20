@@ -496,24 +496,31 @@ function PartnerSection() {
   if (!data?.length) return null
 
   return (
-    <section id="partners" className="border-b bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-14 text-center">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-neutral-500">
+    <section id="partners" className="relative overflow-hidden bg-neutral-950 py-24">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mb-16 text-center">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/40 backdrop-blur-sm">
             Partners
           </div>
-          <p className="text-sm font-medium text-neutral-400">Trusted by industry leaders across Bangladesh</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Trusted by industry leaders across Bangladesh
+          </h2>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {data.map((partner) => (
-            <div key={partner._id} className="flex h-12 items-center justify-center grayscale transition-all duration-300 hover:grayscale-0">
+            <div
+              key={partner._id}
+              className="group flex items-center justify-center rounded-xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]"
+            >
               {errored.has(partner._id) ? (
-                <span className="text-lg font-bold tracking-wide text-neutral-200">{partner.name}</span>
+                <span className="text-sm font-semibold tracking-wide text-white/20">{partner.name}</span>
               ) : (
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-full object-contain opacity-30 transition-opacity hover:opacity-60"
+                  className="h-10 object-contain opacity-30 grayscale transition-all duration-300 group-hover:opacity-60 group-hover:grayscale-0"
                   onError={() => setErrored(prev => new Set(prev).add(partner._id))}
                 />
               )}
