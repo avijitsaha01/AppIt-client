@@ -265,7 +265,7 @@ function ServicesSection() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {data?.map((service) => {
-            const Icon = serviceIcons[service.icon] || Code2
+            const Icon = (service.icon && serviceIcons[service.icon]) || Code2
             return (
               <div
                 key={service._id}
