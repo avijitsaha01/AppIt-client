@@ -4,7 +4,6 @@ import api from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Star, Upload, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -56,61 +55,47 @@ export default function CreateReview() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-neutral-900">Create Review</h1>
-        <p className="mt-1 text-neutral-500">Share your experience with our services.</p>
+        <h1 className="text-xl font-semibold text-neutral-900">Create Review</h1>
+        <p className="mt-1 text-[13px] text-neutral-500">Share your experience with our services.</p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Your Feedback</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {error && (
-              <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600">{error}</div>
-            )}
-            {success && (
-              <div className="rounded-xl bg-green-50 p-4 text-sm text-green-600">
-                Review submitted successfully!
-              </div>
-            )}
+      <div className="rounded-xl border border-neutral-200/70 bg-white">
+        <div className="border-b border-neutral-100 px-5 py-4">
+          <h2 className="text-[14px] font-semibold text-neutral-900">Your Feedback</h2>
+        </div>
+        <div className="p-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {error && <div className="rounded-lg bg-red-50 p-3.5 text-[13px] text-red-600">{error}</div>}
+            {success && <div className="rounded-lg bg-emerald-50 p-3.5 text-[13px] text-emerald-600">Review submitted!</div>}
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="name">Your Name</Label>
-                <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required className="h-10" />
+              <div className="space-y-1.5">
+                <Label className="text-[12px] font-medium text-neutral-700">Your Name</Label>
+                <Input value={name} onChange={(e) => setName(e.target.value)} required className="h-9 text-[13px]" />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="designation">Designation (optional)</Label>
-                <Input id="designation" value={designation} onChange={(e) => setDesignation(e.target.value)} placeholder="e.g. CEO, Company" className="h-10" />
+              <div className="space-y-1.5">
+                <Label className="text-[12px] font-medium text-neutral-700">Designation (optional)</Label>
+                <Input value={designation} onChange={(e) => setDesignation(e.target.value)} placeholder="e.g. CEO, Company" className="h-9 text-[13px]" />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label>Rating</Label>
-              <div className="flex gap-2">
+            <div className="space-y-1.5">
+              <Label className="text-[12px] font-medium text-neutral-700">Rating</Label>
+              <div className="flex gap-1">
                 {[1, 2, 3, 4, 5].map((n) => (
-                  <button
-                    key={n}
-                    type="button"
-                    onClick={() => setRating(n)}
-                    className={cn(
-                      'rounded-lg p-2 transition-all',
-                      n <= rating ? 'text-yellow-400' : 'text-neutral-200 hover:text-yellow-300',
-                    )}
-                  >
-                    <Star className={cn('h-8 w-8', n <= rating && 'fill-yellow-400')} />
+                  <button key={n} type="button" onClick={() => setRating(n)}
+                    className={cn('rounded p-1 transition-all', n <= rating ? 'text-amber-400' : 'text-neutral-200 hover:text-amber-300')}>
+                    <Star className={cn('h-6 w-6', n <= rating && 'fill-amber-400')} />
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="desc">Your Review</Label>
+            <div className="space-y-1.5">
+              <Label className="text-[12px] font-medium text-neutral-700">Review</Label>
               <textarea
-                id="desc"
                 rows={4}
-                className="flex w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm shadow-sm placeholder:text-neutral-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="flex w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[13px] placeholder:text-neutral-400 focus:border-neutral-400 focus:outline-none focus:ring-0"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Tell us about your experience..."
@@ -118,39 +103,33 @@ export default function CreateReview() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label>Profile Photo (optional)</Label>
+            <div className="space-y-1.5">
+              <Label className="text-[12px] font-medium text-neutral-700">Profile Photo (optional)</Label>
               {preview ? (
-                <div className="relative h-24 w-24 overflow-hidden rounded-full border">
-                  <img src={preview} alt="Preview" className="h-full w-full object-cover" />
-                  <button
-                    type="button"
-                    onClick={() => { setFile(null); setPreview(null) }}
-                    className="absolute right-0 top-0 rounded-full bg-black/60 p-1 text-white hover:bg-black/80"
-                  >
+                <div className="relative h-16 w-16 overflow-hidden rounded-full border">
+                  <img src={preview} alt="" className="h-full w-full object-cover" />
+                  <button type="button" onClick={() => { setFile(null); setPreview(null) }}
+                    className="absolute right-0 top-0 rounded-full bg-black/50 p-0.5 text-white">
                     <X className="h-3 w-3" />
                   </button>
                 </div>
               ) : (
-                <label className="flex h-24 w-24 cursor-pointer flex-col items-center justify-center rounded-full border-2 border-dashed border-neutral-300 transition-colors hover:border-blue-400 hover:bg-blue-50/50">
-                  <Upload className="mb-1 h-5 w-5 text-neutral-400" />
-                  <span className="text-[10px] text-neutral-400">Photo</span>
+                <label className="flex h-9 w-28 cursor-pointer items-center gap-2 rounded-lg border border-dashed border-neutral-300 px-3.5 text-[13px] text-neutral-500 transition-colors hover:border-neutral-400">
+                  <Upload className="h-3.5 w-3.5" />
+                  Upload
                   <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                 </label>
               )}
             </div>
 
-            <Button
-              type="submit"
-              className="h-12 w-full gap-2 bg-gradient-to-r from-blue-600 to-purple-600 shadow-md hover:from-blue-700 hover:to-purple-700"
-              disabled={mutation.isPending}
-            >
-              <Star className="h-5 w-5" />
+            <Button type="submit" disabled={mutation.isPending}
+              className="h-9 gap-2 bg-neutral-900 text-[13px] text-white hover:bg-neutral-800">
+              <Star className="h-4 w-4" />
               {mutation.isPending ? 'Submitting...' : 'Submit Review'}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

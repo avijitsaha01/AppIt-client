@@ -4,10 +4,8 @@ import api from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import type { User } from '@/types'
-import { Shield, UserCog, Search, Crown } from 'lucide-react'
+import { Search, Crown, UserMinus, UserPlus, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export default function MakeAdmin() {
@@ -58,97 +56,93 @@ export default function MakeAdmin() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-neutral-900">Manage Admins</h1>
-        <p className="mt-1 text-neutral-500">Promote users to admin or demote them.</p>
+        <h1 className="text-xl font-semibold text-neutral-900">Manage Admins</h1>
+        <p className="mt-1 text-[13px] text-neutral-500">Promote or demote admin users.</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Crown className="h-5 w-5 text-amber-500" />
-              Add Admin
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+        <div className="rounded-xl border border-neutral-200/70 bg-white">
+          <div className="border-b border-neutral-100 px-5 py-4">
+            <div className="flex items-center gap-2">
+              <Crown className="h-4 w-4 text-amber-500" />
+              <h2 className="text-[14px] font-semibold text-neutral-900">Add Admin</h2>
+            </div>
+          </div>
+          <div className="p-5">
             <form onSubmit={handleSubmit} className="space-y-4">
-              {error && (
-                <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600">{error}</div>
-              )}
-              {success && (
-                <div className="rounded-xl bg-green-50 p-4 text-sm text-green-600">{success}</div>
-              )}
-              <div className="space-y-2">
-                <Label htmlFor="email">User Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="user@example.com"
-                  required
-                  className="h-10"
-                />
+              {error && <div className="rounded-lg bg-red-50 p-3 text-[12px] text-red-600">{error}</div>}
+              {success && <div className="rounded-lg bg-emerald-50 p-3 text-[12px] text-emerald-600">{success}</div>}
+              <div className="space-y-1.5">
+                <Label className="text-[12px] font-medium text-neutral-700">User Email</Label>
+                <div className="flex gap-2">
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="user@example.com"
+                    required
+                    className="h-9 flex-1 text-[13px]"
+                  />
+                  <Button type="submit" disabled={makeAdminMutation.isPending}
+                    className="h-9 gap-1.5 bg-neutral-900 text-[12px] text-white hover:bg-neutral-800">
+                    <Shield className="h-3.5 w-3.5" />
+                    Add
+                  </Button>
+                </div>
               </div>
-              <Button
-                type="submit"
-                className="w-full gap-2"
-                disabled={makeAdminMutation.isPending}
-              >
-                <Shield className="h-4 w-4" />
-                {makeAdminMutation.isPending ? 'Adding...' : 'Make Admin'}
-              </Button>
             </form>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">All Users</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <div className="rounded-xl border border-neutral-200/70 bg-white">
+          <div className="border-b border-neutral-100 px-5 py-4">
+            <h2 className="text-[14px] font-semibold text-neutral-900">All Users</h2>
+          </div>
+          <div className="p-5 space-y-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
+              <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
               <Input
                 placeholder="Search users..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="h-10 pl-10"
+                className="h-8 w-full pl-8 text-[13px]"
               />
             </div>
-            <div className="max-h-96 space-y-2 overflow-y-auto">
+            <div className="max-h-[320px] space-y-1 overflow-y-auto">
               {filtered?.length === 0 ? (
-                <p className="py-8 text-center text-sm text-neutral-400">No users found</p>
+                <p className="py-8 text-center text-[13px] text-neutral-400">No users found</p>
               ) : (
                 filtered?.map((user) => (
-                  <div
-                    key={user.id}
-                    className="flex items-center justify-between rounded-xl border p-4 transition-colors hover:bg-neutral-50"
-                  >
+                  <div key={user.id} className="flex items-center justify-between rounded-lg border border-neutral-100 p-3 transition-colors hover:bg-neutral-50">
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-neutral-900">{user.name}</p>
-                      <p className="truncate text-xs text-neutral-500">{user.email}</p>
+                      <p className="truncate text-[13px] font-medium text-neutral-900">{user.name}</p>
+                      <p className="truncate text-[12px] text-neutral-500">{user.email}</p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Badge variant={user.role === 'admin' ? 'default' : 'secondary'}>
+                    <div className="flex items-center gap-2">
+                      <span className={cn(
+                        'rounded px-2 py-0.5 text-[11px] font-medium',
+                        user.role === 'admin' ? 'bg-neutral-800 text-white' : 'bg-neutral-100 text-neutral-600',
+                      )}>
                         {user.role}
-                      </Badge>
+                      </span>
                       {user.role === 'admin' ? (
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-8 text-xs text-red-600 hover:bg-red-50 hover:text-red-700"
                           onClick={() => removeAdminMutation.mutate(user.email)}
+                          className="h-7 gap-1 border-red-200 text-[11px] text-red-600 hover:bg-red-50"
                         >
+                          <UserMinus className="h-3 w-3" />
                           Demote
                         </Button>
                       ) : (
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-8 text-xs text-blue-600 hover:bg-blue-50 hover:text-blue-700"
                           onClick={() => makeAdminMutation.mutate(user.email)}
+                          className="h-7 gap-1 border-blue-200 text-[11px] text-blue-600 hover:bg-blue-50"
                         >
+                          <UserPlus className="h-3 w-3" />
                           Promote
                         </Button>
                       )}
@@ -157,8 +151,8 @@ export default function MakeAdmin() {
                 ))
               )}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -5,9 +5,8 @@ import api from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { Service } from '@/types'
-import { Send, Upload, Check } from 'lucide-react'
+import { Send, Upload, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export default function PlaceOrder() {
@@ -67,152 +66,141 @@ export default function PlaceOrder() {
   const selectedService = services?.find(s => s._id === serviceId)
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-3xl">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-neutral-900">Place an Order</h1>
-        <p className="mt-1 text-neutral-500">Fill in the details below to get started with your project.</p>
+        <h1 className="text-xl font-semibold text-neutral-900">Place an Order</h1>
+        <p className="mt-1 text-[13px] text-neutral-500">Fill in the details below to get started.</p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-5">
-        <form onSubmit={handleSubmit} className="space-y-6 lg:col-span-3">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Select Service</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-3">
+        <form onSubmit={handleSubmit} className="space-y-6 lg:col-span-2">
+          <div className="rounded-xl border border-neutral-200/70 bg-white">
+            <div className="border-b border-neutral-100 px-5 py-4">
+              <h2 className="text-[14px] font-semibold text-neutral-900">Service</h2>
+            </div>
+            <div className="p-5">
+              <div className="grid gap-2 sm:grid-cols-2">
                 {services?.map((s) => (
                   <button
                     type="button"
                     key={s._id}
                     onClick={() => setServiceId(s._id)}
                     className={cn(
-                      'relative rounded-xl border-2 p-4 text-left transition-all',
+                      'rounded-lg border p-3.5 text-left text-[13px] transition-all',
                       serviceId === s._id
-                        ? 'border-blue-500 bg-blue-50 shadow-sm'
-                        : 'border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50',
+                        ? 'border-neutral-900 bg-neutral-50 ring-1 ring-neutral-900'
+                        : 'border-neutral-200 hover:border-neutral-300',
                     )}
                   >
-                    {serviceId === s._id && (
-                      <div className="absolute right-2 top-2 rounded-full bg-blue-600 p-0.5">
-                        <Check className="h-3 w-3 text-white" />
-                      </div>
-                    )}
-                    <p className="text-sm font-medium text-neutral-900">{s.title}</p>
-                    <p className="mt-1 text-xs text-neutral-500 line-clamp-2">{s.description}</p>
+                    <p className="font-medium text-neutral-900">{s.title}</p>
+                    <p className="mt-1 text-[12px] text-neutral-500 line-clamp-2">{s.description}</p>
                   </button>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Contact Information</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <div className="rounded-xl border border-neutral-200/70 bg-white">
+            <div className="border-b border-neutral-100 px-5 py-4">
+              <h2 className="text-[14px] font-semibold text-neutral-900">Contact Information</h2>
+            </div>
+            <div className="p-5 space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
-                  <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required className="h-10" />
+                <div className="space-y-1.5">
+                  <Label className="text-[12px] font-medium text-neutral-700">Full Name</Label>
+                  <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required className="h-9 text-[13px]" />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-10" />
+                <div className="space-y-1.5">
+                  <Label className="text-[12px] font-medium text-neutral-700">Email</Label>
+                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-9 text-[13px]" />
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="company">Company Name</Label>
-                <Input id="company" value={companyName} onChange={(e) => setCompanyName(e.target.value)} required className="h-10" />
+              <div className="space-y-1.5">
+                <Label className="text-[12px] font-medium text-neutral-700">Company Name</Label>
+                <Input id="company" value={companyName} onChange={(e) => setCompanyName(e.target.value)} required className="h-9 text-[13px]" />
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Project Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="details">Description</Label>
+          <div className="rounded-xl border border-neutral-200/70 bg-white">
+            <div className="border-b border-neutral-100 px-5 py-4">
+              <h2 className="text-[14px] font-semibold text-neutral-900">Project Details</h2>
+            </div>
+            <div className="p-5 space-y-4">
+              <div className="space-y-1.5">
+                <Label className="text-[12px] font-medium text-neutral-700">Description</Label>
                 <textarea
-                  id="details"
-                  rows={5}
-                  className="flex w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm shadow-sm transition-colors placeholder:text-neutral-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  rows={4}
+                  className="flex w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[13px] shadow-sm placeholder:text-neutral-400 focus:border-neutral-400 focus:outline-none focus:ring-0"
                   value={details}
                   onChange={(e) => setDetails(e.target.value)}
-                  placeholder="Describe your project in detail..."
+                  placeholder="Describe your project..."
                   required
                 />
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="price">Budget ($)</Label>
-                  <Input id="price" type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="5000" required className="h-10" />
+                <div className="space-y-1.5">
+                  <Label className="text-[12px] font-medium text-neutral-700">Budget ($)</Label>
+                  <Input id="price" type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="5000" required className="h-9 text-[13px]" />
                 </div>
-                <div className="space-y-2">
-                  <Label>Reference Image</Label>
-                  <label className="flex h-10 cursor-pointer items-center gap-2 rounded-xl border border-dashed border-neutral-300 px-4 text-sm text-neutral-500 transition-colors hover:border-blue-400 hover:text-blue-600">
-                    <Upload className="h-4 w-4" />
-                    {file ? file.name : 'Upload image'}
-                    <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
-                  </label>
+                <div className="space-y-1.5">
+                  <Label className="text-[12px] font-medium text-neutral-700">Reference Image</Label>
+                  {preview ? (
+                    <div className="relative h-20 w-20 overflow-hidden rounded-lg border">
+                      <img src={preview} alt="" className="h-full w-full object-cover" />
+                      <button type="button" onClick={() => { setFile(null); setPreview(null) }}
+                        className="absolute right-1 top-1 rounded-full bg-black/50 p-0.5 text-white">
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="flex h-9 cursor-pointer items-center gap-2 rounded-lg border border-dashed border-neutral-300 px-3.5 text-[13px] text-neutral-500 transition-colors hover:border-neutral-400">
+                      <Upload className="h-3.5 w-3.5" />
+                      {file ? file.name : 'Upload'}
+                      <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+                    </label>
+                  )}
                 </div>
               </div>
-              {preview && (
-                <img src={preview} alt="Preview" className="h-32 w-48 rounded-xl object-cover" />
-              )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          {error && (
-            <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600">{error}</div>
-          )}
+          {error && <div className="rounded-lg bg-red-50 p-3.5 text-[13px] text-red-600">{error}</div>}
 
-          <Button
-            type="submit"
-            className="h-12 w-full gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-base shadow-md hover:from-blue-700 hover:to-purple-700"
-            disabled={mutation.isPending}
-          >
-            <Send className="h-5 w-5" />
+          <Button type="submit" disabled={mutation.isPending}
+            className="h-10 w-full gap-2 bg-neutral-900 text-[13px] text-white hover:bg-neutral-800">
+            <Send className="h-4 w-4" />
             {mutation.isPending ? 'Submitting...' : 'Submit Order'}
           </Button>
         </form>
 
-        <div className="lg:col-span-2">
-          <div className="sticky top-6 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Order Summary</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="rounded-xl bg-neutral-50 p-4">
-                  <p className="text-sm text-neutral-500">Service</p>
-                  <p className="font-medium text-neutral-900">
-                    {selectedService?.title || 'Not selected'}
-                  </p>
+        <div className="lg:col-span-1">
+          <div className="sticky top-6 space-y-4">
+            <div className="rounded-xl border border-neutral-200/70 bg-white">
+              <div className="border-b border-neutral-100 px-5 py-4">
+                <h2 className="text-[14px] font-semibold text-neutral-900">Summary</h2>
+              </div>
+              <div className="p-5 space-y-4">
+                <div>
+                  <p className="text-[12px] text-neutral-500">Service</p>
+                  <p className="text-[13px] font-medium text-neutral-900">{selectedService?.title || '—'}</p>
                 </div>
-                <div className="rounded-xl bg-neutral-50 p-4">
-                  <p className="text-sm text-neutral-500">Budget</p>
-                  <p className="font-medium text-neutral-900">
-                    {price ? `$${parseInt(price).toLocaleString()}` : '—'}
-                  </p>
+                <div>
+                  <p className="text-[12px] text-neutral-500">Budget</p>
+                  <p className="text-[13px] font-medium text-neutral-900">{price ? `$${parseInt(price).toLocaleString()}` : '—'}</p>
                 </div>
-                <div className="rounded-xl bg-neutral-50 p-4">
-                  <p className="text-sm text-neutral-500">Timeline</p>
-                  <p className="font-medium text-neutral-900">To be discussed</p>
+                <div>
+                  <p className="text-[12px] text-neutral-500">Timeline</p>
+                  <p className="text-[13px] font-medium text-neutral-900">To be discussed</p>
                 </div>
-              </CardContent>
-            </Card>
-
-            <div className="rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 p-6 text-white">
-              <h3 className="text-lg font-semibold">Need help?</h3>
-              <p className="mt-2 text-sm text-white/80">
-                Our team is here to assist you with any questions about your order.
-              </p>
-              <Button variant="secondary" className="mt-4 bg-white text-blue-700 hover:bg-white/90">
+              </div>
+            </div>
+            <div className="rounded-xl border border-neutral-200/70 bg-neutral-50 p-5">
+              <h3 className="text-[13px] font-semibold text-neutral-900">Need help?</h3>
+              <p className="mt-1 text-[12px] text-neutral-500">Contact our support team for assistance.</p>
+              <button className="mt-3 text-[12px] font-medium text-neutral-900 underline underline-offset-2">
                 Contact Support
-              </Button>
+              </button>
             </div>
           </div>
         </div>
