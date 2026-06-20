@@ -33,55 +33,82 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-neutral-50 px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <Link to="/" className="mb-4 block text-2xl font-bold">
-            App<span className="text-blue-600">It</span>
-          </Link>
-          <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>Sign in to your account</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
-              <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">{error}</div>
-            )}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-              />
-            </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              <LogIn className="mr-2 h-4 w-4" />
-              {loading ? 'Signing in...' : 'Sign In'}
-            </Button>
-          </form>
-          <p className="mt-4 text-center text-sm text-neutral-600">
-            Don&apos;t have an account?{' '}
-            <Link to="/register" className="font-medium text-blue-600 hover:underline">
-              Sign up
+    <div className="flex min-h-screen">
+      <div className="hidden flex-1 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 p-12 lg:flex lg:flex-col lg:justify-between">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-lg font-bold text-white backdrop-blur">
+            A
+          </div>
+          <span className="text-xl font-bold text-white">AppIt</span>
+        </Link>
+        <div>
+          <blockquote className="text-2xl font-semibold text-white/90">
+            &ldquo;AppIt transformed our business with their incredible web application. Highly recommended!&rdquo;
+          </blockquote>
+          <p className="mt-4 text-sm text-white/60">John Doe, CEO of TechStart Inc.</p>
+        </div>
+        <div className="text-sm text-white/40">&copy; 2024 AppIt. All rights reserved.</div>
+      </div>
+
+      <div className="flex flex-1 items-center justify-center bg-neutral-50 px-4">
+        <Card className="w-full max-w-md border-0 bg-transparent shadow-none">
+          <CardHeader className="text-center">
+            <Link to="/" className="mb-6 inline-flex items-center gap-2 lg:hidden">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-sm font-bold text-white">
+                A
+              </div>
+              <span className="text-lg font-bold">App<span className="text-blue-600">It</span></span>
             </Link>
-          </p>
-        </CardContent>
-      </Card>
+            <CardTitle className="text-2xl">Welcome back</CardTitle>
+            <CardDescription>Sign in to your account to continue</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {error && (
+                <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600 ring-1 ring-red-100">{error}</div>
+              )}
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  required
+                  className="h-11"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="h-11"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="h-11 w-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-md hover:from-blue-700 hover:to-purple-700"
+                disabled={loading}
+              >
+                <LogIn className="mr-2 h-4 w-4" />
+                {loading ? 'Signing in...' : 'Sign In'}
+              </Button>
+            </form>
+            <p className="mt-6 text-center text-sm text-neutral-500">
+              Don&apos;t have an account?{' '}
+              <Link to="/register" className="font-semibold text-blue-600 hover:text-blue-700">
+                Sign up
+              </Link>
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
