@@ -17,6 +17,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 const navLinks = [
   { href: '#services', label: 'Services' },
   { href: '#works', label: 'Our Works' },
+  { href: '#about', label: 'About' },
+  { href: '#careers', label: 'Careers' },
   { href: '#partners', label: 'Partners' },
   { href: '#reviews', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
@@ -55,7 +57,7 @@ function NavBar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-6 lg:gap-8 xl:gap-10 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -295,7 +297,7 @@ function ServicesSection() {
 
 function AboutSection() {
   return (
-    <section className="relative overflow-hidden bg-neutral-50 py-28">
+    <section id="about" className="relative overflow-hidden bg-neutral-50 py-28">
       <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
       <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-purple-500/5 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-6">
@@ -725,7 +727,7 @@ function CareerSection() {
   if (!jobs.length) return null
 
   return (
-    <section className="relative overflow-hidden bg-neutral-50 py-28">
+    <section id="careers" className="relative overflow-hidden bg-neutral-50 py-28">
       <div className="absolute -right-40 -top-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mb-16 flex flex-col items-center text-center">
