@@ -508,24 +508,28 @@ function PartnerSection() {
             Trusted by industry leaders across Bangladesh
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-          {data.map((partner) => (
-            <div
-              key={partner._id}
-              className="group flex items-center justify-center rounded-xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]"
-            >
-              {errored.has(partner._id) ? (
-                <span className="text-sm font-semibold tracking-wide text-white/20">{partner.name}</span>
-              ) : (
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="h-10 object-contain opacity-30 grayscale transition-all duration-300 group-hover:opacity-60 group-hover:grayscale-0"
-                  onError={() => setErrored(prev => new Set(prev).add(partner._id))}
-                />
-              )}
+        <div className="relative">
+          <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="flex animate-scroll gap-8 py-4">
+              {[...data, ...data].map((partner, i) => (
+                <div
+                  key={`${partner._id}-${i}`}
+                  className="flex h-14 w-40 shrink-0 items-center justify-center rounded-xl border border-white/5 bg-white/[0.02] px-6 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]"
+                >
+                  {errored.has(partner._id) ? (
+                    <span className="text-sm font-semibold tracking-wide text-white/20">{partner.name}</span>
+                  ) : (
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="h-8 max-w-full object-contain opacity-30 grayscale transition-all duration-300 hover:opacity-60 hover:grayscale-0"
+                      onError={() => setErrored(prev => new Set(prev).add(partner._id))}
+                    />
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
