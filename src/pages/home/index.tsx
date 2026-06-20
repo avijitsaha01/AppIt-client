@@ -541,11 +541,26 @@ function ReviewSection() {
     queryKey: ['reviews'],
     queryFn: () => api.get<{ reviews: Review[] }>('/reviews').then(r => r.data.reviews),
   })
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const items = data ?? []
+
+  useEffect(() => {
+    if (!items.length) return
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % items.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [items.length])
+
+  if (!items.length) return null
+
+  const review = items[activeIndex]
 
   return (
-    <section id="reviews" className="overflow-hidden bg-white py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="reviews" className="relative overflow-hidden bg-white py-28">
+      <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-emerald-500/5 blur-3xl" />
+      <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl" />
+      <div className="relative mx-auto max-w-4xl px-6">
         <div className="mb-16 flex flex-col items-center text-center">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-600">
             Testimonials
@@ -557,44 +572,67 @@ function ReviewSection() {
           </h2>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
-          style={{ scrollSnapType: 'x mandatory' }}
-        >
-          {data?.map((review) => (
+        <div className="relative min-h-[280px]">
+          {items.map((review, i) => (
             <div
               key={review._id}
-              className="group relative min-w-[380px] flex-shrink-0 rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-200 hover:shadow-xl"
-              style={{ scrollSnapAlign: 'start' }}
+              className={cn(
+                'absolute inset-0 flex flex-col items-center text-center transition-all duration-700',
+                i === activeIndex
+                  ? 'translate-y-0 opacity-100'
+                  : i < activeIndex
+                    ? '-translate-y-4 opacity-0 pointer-events-none'
+                    : 'translate-y-4 opacity-0 pointer-events-none',
+              )}
             >
-              <Quote className="absolute right-6 top-6 h-8 w-8 text-neutral-50" />
-              <div className="mb-5 flex gap-1">
+              <div className="mb-6 flex gap-1.5">
                 {Array.from({ length: review.rating || 5 }).map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                  <Star key={j} className="h-5 w-5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className="mb-7 text-sm leading-relaxed text-neutral-500">
-                &ldquo;{review.description}&rdquo;
-              </p>
-              <div className="flex items-center gap-3.5">
+
+              <div className="relative mb-8">
+                <Quote className="absolute -left-8 -top-4 h-6 w-6 text-emerald-200" />
+                <p className="text-lg leading-relaxed text-neutral-500 md:text-xl">
+                  &ldquo;{review.description}&rdquo;
+                </p>
+              </div>
+
+              <div className="flex items-center gap-4">
                 {review.image ? (
-                  <img src={review.image} alt={review.name} className="h-11 w-11 rounded-full object-cover ring-2 ring-neutral-100" />
+                  <img src={review.image} alt={review.name} className="h-14 w-14 rounded-full object-cover ring-4 ring-emerald-50" />
                 ) : (
-                  <Avatar className="h-11 w-11 ring-2 ring-neutral-100">
-                    <AvatarFallback className="bg-neutral-100 text-sm text-neutral-600">
+                  <Avatar className="h-14 w-14 ring-4 ring-emerald-50">
+                    <AvatarFallback className="bg-emerald-50 text-sm font-semibold text-emerald-600">
                       {review.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
                     </AvatarFallback>
                   </Avatar>
                 )}
-                <div>
-                  <p className="text-sm font-semibold text-neutral-900">{review.name}</p>
+                <div className="text-left">
+                  <p className="text-base font-semibold text-neutral-900">{review.name}</p>
                   {review.designation && (
-                    <p className="text-xs text-neutral-400">{review.designation}</p>
+                    <p className="text-sm text-neutral-400">{review.designation}</p>
                   )}
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex items-center justify-center gap-2">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={cn(
+                'h-2 rounded-full transition-all duration-300',
+                i === activeIndex
+                  ? 'w-8 bg-emerald-500'
+                  : 'w-2 bg-neutral-200 hover:bg-neutral-300',
+              )}
+            >
+              <span className="sr-only">Review {i + 1}</span>
+            </button>
           ))}
         </div>
       </div>
