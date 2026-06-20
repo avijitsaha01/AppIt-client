@@ -11,6 +11,14 @@ import {
   MessageSquare,
   UserCog,
   X,
+  Ticket,
+  Receipt,
+  Users,
+  FileText,
+  Briefcase,
+  Send,
+  Newspaper,
+  Layers,
 } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 
@@ -18,6 +26,8 @@ const customerLinks = [
   { to: '/dashboard', label: 'Overview', icon: LayoutDashboard },
   { to: '/dashboard/order', label: 'Place Order', icon: ShoppingCart },
   { to: '/dashboard/service-list', label: 'My Orders', icon: Package },
+  { to: '/dashboard/tickets', label: 'Support Tickets', icon: Ticket },
+  { to: '/dashboard/invoices', label: 'Invoices', icon: Receipt },
   { to: '/dashboard/create-review', label: 'Create Review', icon: MessageSquare },
 ]
 
@@ -26,6 +36,14 @@ const adminLinks = [
   { to: '/dashboard/servicesList', label: 'All Orders', icon: ClipboardList },
   { to: '/dashboard/serviceAdd', label: 'Add Service', icon: PlusCircle },
   { to: '/dashboard/makeAdmin', label: 'Manage Admins', icon: UserCog },
+  { to: '/dashboard/manage-team', label: 'Manage Team', icon: Users },
+  { to: '/dashboard/manage-blog', label: 'Manage Blog', icon: Newspaper },
+  { to: '/dashboard/manage-portfolio', label: 'Manage Portfolio', icon: Layers },
+  { to: '/dashboard/manage-products', label: 'Manage Products', icon: Package },
+  { to: '/dashboard/manage-jobs', label: 'Manage Jobs', icon: Briefcase },
+  { to: '/dashboard/manage-applications', label: 'Applications', icon: Send },
+  { to: '/dashboard/manage-leads', label: 'Contact Leads', icon: MessageSquare },
+  { to: '/dashboard/manage-tickets', label: 'Support Tickets', icon: Ticket },
 ]
 
 interface SidebarProps {
