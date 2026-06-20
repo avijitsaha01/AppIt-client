@@ -163,7 +163,7 @@ export default function ManageProducts() {
                 ) : (
                   <label className="flex h-9 cursor-pointer items-center gap-2 rounded-lg border border-dashed border-neutral-300 px-3.5 text-[13px] text-neutral-500 hover:border-neutral-400">
                     <Upload className="h-3.5 w-3.5" /> Upload image
-                    <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setFile(f); const r = new FileReader(); r.onloadend = () => setPreview(r.result as string); r.readAsDataURL(f) } }} className="hidden" />
+                    <input id="image" name="image" type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setFile(f); const r = new FileReader(); r.onloadend = () => setPreview(r.result as string); r.readAsDataURL(f) } }} className="hidden" />
                   </label>
                 )}
               </div>

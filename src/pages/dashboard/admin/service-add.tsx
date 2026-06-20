@@ -101,7 +101,7 @@ export default function ServiceAdd() {
                   <label className="flex h-9 cursor-pointer items-center gap-2 rounded-lg border border-dashed border-neutral-300 px-3.5 text-[13px] text-neutral-500 transition-colors hover:border-neutral-400">
                     <Upload className="h-3.5 w-3.5" />
                     Upload image
-                    <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+                    <input id="image" name="image" type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                   </label>
                 )}
               </div>

@@ -184,23 +184,20 @@ export default function Careers() {
                   {applyError}
                 </div>
               )}
-              <input
-                placeholder="Full Name"
+              <input id="full_name" name="full_name"                 placeholder="Full Name"
                 value={formData.name}
                 onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
                 className="h-11 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none focus:border-neutral-400"
                 required
               />
-              <input
-                type="email"
+              <input id="email" name="email"                 type="email"
                 placeholder="Email"
                 value={formData.email}
                 onChange={(e) => setFormData(f => ({ ...f, email: e.target.value }))}
                 className="h-11 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none focus:border-neutral-400"
                 required
               />
-              <input
-                placeholder="Phone"
+              <input id="phone" name="phone"                 placeholder="Phone"
                 value={formData.phone}
                 onChange={(e) => setFormData(f => ({ ...f, phone: e.target.value }))}
                 className="h-11 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none focus:border-neutral-400"
@@ -210,8 +207,7 @@ export default function Careers() {
                 <label className="mb-1.5 block text-sm font-medium text-neutral-700">Resume <span className="text-neutral-400">(PDF, DOC, DOCX)</span></label>
                 <div className="flex items-center gap-3">
                   <label className="flex h-11 cursor-pointer items-center gap-2 rounded-xl border border-dashed border-neutral-300 bg-neutral-50 px-4 text-sm text-neutral-500 transition-colors hover:border-neutral-400 hover:bg-neutral-100">
-                    <input
-                      type="file"
+                    <input id="resume" name="resume"                       type="file"
                       accept=".pdf,.doc,.docx"
                       onChange={(e) => setResumeFile(e.target.files?.[0] || null)}
                       className="hidden"
@@ -231,8 +227,7 @@ export default function Careers() {
                   )}
                 </div>
               </div>
-              <textarea
-                rows={4}
+              <textarea id="cover_letter" name="cover_letter"                 rows={4}
                 placeholder="Cover Letter (optional)"
                 value={formData.coverLetter}
                 onChange={(e) => setFormData(f => ({ ...f, coverLetter: e.target.value }))}

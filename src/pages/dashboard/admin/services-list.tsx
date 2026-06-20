@@ -67,8 +67,7 @@ export default function ServicesList() {
         <div className="flex items-center gap-3">
           <div className="relative">
             <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" />
-            <Input
-              placeholder="Search orders..."
+            <input id="search_orders" name="search_orders"               placeholder="Search orders..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1) }}
               className="h-8 w-56 pl-8 text-[13px]"

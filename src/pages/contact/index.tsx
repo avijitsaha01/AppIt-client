@@ -88,15 +88,13 @@ export default function Contact() {
               ) : (
                 <form className="space-y-5" onSubmit={handleSubmit}>
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <input
-                      placeholder="Your Name"
+                    <input id="your_name" name="your_name"                       placeholder="Your Name"
                       value={form.name}
                       onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))}
                       className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none transition-colors focus:border-neutral-400"
                       required
                     />
-                    <input
-                      type="email"
+                    <input id="your_email" name="your_email"                       type="email"
                       placeholder="Your Email"
                       value={form.email}
                       onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
@@ -104,21 +102,18 @@ export default function Contact() {
                       required
                     />
                   </div>
-                  <input
-                    placeholder="Phone (optional)"
+                  <input id="phone" name="phone"                     placeholder="Phone (optional)"
                     value={form.phone}
                     onChange={(e) => setForm(f => ({ ...f, phone: e.target.value }))}
                     className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none transition-colors focus:border-neutral-400"
                   />
-                  <input
-                    placeholder="Subject"
+                  <input id="subject" name="subject"                     placeholder="Subject"
                     value={form.subject}
                     onChange={(e) => setForm(f => ({ ...f, subject: e.target.value }))}
                     className="h-12 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 text-sm outline-none transition-colors focus:border-neutral-400"
                     required
                   />
-                  <textarea
-                    rows={5}
+                  <textarea id="tell_us_about_your_project" name="tell_us_about_your_project"                     rows={5}
                     placeholder="Tell us about your project..."
                     value={form.message}
                     onChange={(e) => setForm(f => ({ ...f, message: e.target.value }))}
